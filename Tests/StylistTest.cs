@@ -18,7 +18,7 @@ namespace HairSalon
     [Fact]
     public void Test_DatabaseEmptyAtFirst_True()
     {
-      Console.WriteLine("Test: Database Empty");
+      Console.WriteLine("Stylist Test: Database Empty");
       // ARRANGE/ACT
 
       int result = Stylist.GetAll().Count;
@@ -32,7 +32,7 @@ namespace HairSalon
     [Fact]
     public void Test_NamesAreTheSame_True()
     {
-      Console.WriteLine("Test: Names Are the Same");
+      Console.WriteLine("Stylist Test: Names Are the Same");
 
       // ARRANGE/ACT
       Stylist firstStylist = new Stylist("Jordan");
@@ -47,7 +47,7 @@ namespace HairSalon
     [Fact]
     public void Test_SavesToDatabase_True()
     {
-      Console.WriteLine("Test: Saves To Database");
+      Console.WriteLine("Stylist Test: Saves To Database");
       //ARRANGE
       Stylist testStylist = new Stylist("Jordan Loop");
       //ACT
@@ -62,7 +62,7 @@ namespace HairSalon
     [Fact]
     public void Test_AssignsIdToObject_True()
     {
-      Console.WriteLine("Test: Assign Id");
+      Console.WriteLine("Stylist Test: Assign Id");
       //Arrange
       Stylist testStylist = new Stylist("Jordan Loop");
 
@@ -81,7 +81,7 @@ namespace HairSalon
     [Fact]
     public void Test_ObjectFoundInDatabase_True()
     {
-      Console.WriteLine("Test: Object Found In db");
+      Console.WriteLine("Stylist Test: Object Found In db");
       //Arrange
       Stylist testStylist = new Stylist("Jordan Loop");
       testStylist.Save();

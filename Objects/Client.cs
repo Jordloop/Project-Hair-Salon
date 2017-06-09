@@ -7,13 +7,13 @@ namespace HairSalon
   public class Client
   {
     private int _id;
-    private int _stylistId;
+    private int _clientId;
     private string _name;
 
-    public Client(string Name, int StylistId, int Id = 0)
+    public Client(string Name, int ClientId, int Id = 0)
     {
       _name = Name;
-      _stylistId = StylistId;
+      _clientId = ClientId;
       _id = Id;
     }
 
@@ -29,8 +29,8 @@ namespace HairSalon
         Client newClient = (Client) otherClient;
         bool idEquality = (this.GetId() == newClient.GetId());
         bool nameEquality = (this.GetName() == newClient.GetName());
-        bool stylistEquality = (this.GetClientId() == newClient.GetClientId());
-        return (idEquality && nameEquality && stylistEquality);
+        bool clientEquality = (this.GetClientId() == newClient.GetClientId());
+        return (idEquality && nameEquality && clientEquality);
       }
     }
 //----GETTERS
@@ -44,9 +44,9 @@ namespace HairSalon
       return _id;
     }
 
-    public int GetStylistId()
+    public int GetClientId()
     {
-      return _stylistId;
+      return _clientId;
     }
 //----SETTERS
     public void SetName(string newName)
@@ -54,12 +54,43 @@ namespace HairSalon
       _name = newName;
     }
 
-    public void SetStylistId(int newStylistId)
+    public void SetClientId(int newClientId)
     {
-      _stylistId = newStylistId;
+      _clientId = newClientId;
     }
 //----CALSS METHODS
 //GetAll
+    public static List<Client> GetAll()
+    {
+      Console.WriteLine("GetAll");
+      List<Client> allClients = new List<Client>{};
+
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM clients;", conn);
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while (rdr.Read())
+      {
+        int clientId = rdr.GetInt32(0);
+        string clientName = rdr.GetString(1);
+
+        Client newClient = new Client( clientName, clientId);
+        allClients.Add(newClient);
+      }
+
+      if (rdr != null)
+        {
+          rdr.Close();
+        }
+        if (conn != null)
+        {
+          conn.Close();
+        }
+
+        return allClients;
+    }
 
 //Save
 

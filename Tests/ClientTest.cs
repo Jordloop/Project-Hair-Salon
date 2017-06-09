@@ -7,15 +7,25 @@ using System.Data.SqlClient;
 namespace HairSalon
 {
   [Collection("HairSalon")]
-  public class StylistTest : IDisposable
+  public class ClientTest
+  // : IDisposable
   {
-    public StylistTest()
+    public ClientTest()
     {
       DBConfiguration.ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=hair_salon_test;Integrated Security=SSPI;";
     }
 
 //DATABASE EMPTY
+[Fact]
+    public void Test_DatabaseEmpty_True()
+    {
+      Console.WriteLine("Client Test: db empty");
+      //Arrange, Act
+      int result = Client.GetAll().Count;
 
+      //Assert
+      Assert.Equal(0, result);
+    }
 //NAMES ARE THE SAME
 
 //SAVE TO DATABASE
