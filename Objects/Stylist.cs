@@ -15,6 +15,9 @@ namespace HairSalon
       _id = Id;
       _name = Name;
     }
+
+
+
 //----GETTERS
     public string GetName()
     {
@@ -64,6 +67,15 @@ namespace HairSalon
     }
 
 //DeleteAll
+    public static void DeleteAll()
+      {
+        SqlConnection conn = DB.Connection();
+        conn.Open();
+        SqlCommand cmd = new SqlCommand("DELETE FROM stylists;", conn);
+
+        cmd.ExecuteNonQuery();
+        conn.Close();
+      }
 
 
 
