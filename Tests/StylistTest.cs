@@ -58,7 +58,7 @@ namespace HairSalon
       Assert.Equal(testList, result);
     }
 
-//ASSIGN ID TO DATABASE
+//ASSIGN ID TO OBJECT
     [Fact]
     public void Test_AssignsIdToObject_True()
     {
