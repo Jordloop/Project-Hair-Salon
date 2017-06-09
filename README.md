@@ -12,3 +12,8 @@
 | Client is able to remove clients.                         | Click "Remove Client" button.      | Returned to client page with list of all clients.           |
 | Client is able to update a client's name.                 | Click "Edit Name" button.          | A form to edit client's name.                               |
 | Client submits "Edit Name" form.                          | Click "Submit" button.             | Returned to client page with updated client name.           |
+
+
+
+
+In SQLCMD: >CREATE DATABASE hair_salon; > GO > USE hair_salon > GO > CREATE TABLE stylists (id INT IDENTITY(1,1), name VARCHAR(255), client_id INT)); > GO > CREATE TABLE clients (id INT IDENTITY(1,1), name VARCHAR(255));
