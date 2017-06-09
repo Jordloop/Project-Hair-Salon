@@ -90,7 +90,7 @@ namespace HairSalon
       SqlParameter nameParameter = new SqlParameter();
       nameParameter.ParameterName = "@StylistName";
       nameParameter.Value = this.GetName();
-      
+
       cmd.Parameters.Add(nameParameter);
       SqlDataReader rdr = cmd.ExecuteReader();
 
@@ -141,6 +141,41 @@ namespace HairSalon
       return foundStylist;
     }
 
+//GETRESTAURANT METHOD
+    public List<Client> GetClient()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+      SqlCommand cmd = new SqlCommand("SELECT * FROM clients WHERE stylist_Id = @Stylist_Id;", conn);
+
+      SqlParameter stylistIdParameter = new SqlParameter();
+      stylistIdParameter.ParameterName = "@Stylist_Id";
+      stylistIdParameter.Value = this.GetId();
+      cmd.Parameters.Add(stylistIdParameter);
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      List<Client> clients = new List<Client>{};
+
+      while(rdr.Read())
+      {
+        int clientId = rdr.GetInt32(0);
+        string clientName = rdr.GetString(1);
+        int clientStylistId = rdr.GetInt32(2);
+
+        Client newClient = new Client(clientName, clientStylistId, clientId);
+        clients.Add(newClient);
+      }
+      if(rdr != null)
+      {
+        rdr.Close();
+      }
+      if(conn != null)
+      {
+        conn.Close();
+      }
+      return clients;
+      }
 
 
 //DeleteAll
