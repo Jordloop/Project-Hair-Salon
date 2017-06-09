@@ -77,6 +77,24 @@ namespace HairSalon
       Assert.Equal(testId, result);
     }
 
+//OBJECT FOUND IN DATABASE
+    [Fact]
+    public void Test_ObjectFoundInDatabase_True()
+    {
+      Console.WriteLine("Test: Object Found In db");
+      //Arrange
+      Stylist testStylist = new Stylist("Jordan Loop");
+      testStylist.Save();
+
+      //Act
+      Stylist foundStylist = Stylist.Find(testStylist.GetId());
+
+      //Assert
+      Assert.Equal(testStylist, foundStylist);
+    }
+
+
+
 //DISPOSE
     public void Dispose()
     {
