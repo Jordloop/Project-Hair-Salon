@@ -18,7 +18,7 @@ namespace HairSalon
     [Fact]
     public void Test_DatabaseEmptyAtFirst_True()
     {
-      Console.WriteLine("Database Empty");
+      Console.WriteLine("Test: Database Empty");
       // ARRANGE/ACT
 
       int result = Stylist.GetAll().Count;
@@ -28,12 +28,11 @@ namespace HairSalon
     }
 
 
-//NAMES ARE THE SetName
-
+//NAMES ARE THE SAME
     [Fact]
     public void Test_NamesAreTheSame_True()
     {
-      Console.WriteLine("Names Are the Same");
+      Console.WriteLine("Test: Names Are the Same");
 
       // ARRANGE/ACT
       Stylist firstStylist = new Stylist("Jordan");
@@ -48,6 +47,7 @@ namespace HairSalon
     [Fact]
     public void Test_SavesToDatabase_True()
     {
+      Console.WriteLine("Test: Saves To Database");
       //ARRANGE
       Stylist testStylist = new Stylist("Jordan Loop");
       //ACT
@@ -58,6 +58,24 @@ namespace HairSalon
       Assert.Equal(testList, result);
     }
 
+//ASSIGN ID TO DATABASE
+    [Fact]
+    public void Test_AssignsIdToObject_True()
+    {
+      Console.WriteLine("Test: Assign Id");
+      //Arrange
+      Stylist testStylist = new Stylist("Jordan Loop");
+
+      //Act
+      testStylist.Save();
+      Stylist savedStylist = Stylist.GetAll()[0];
+
+      int result = savedStylist.GetId();
+      int testId = testStylist.GetId();
+
+      //Assert
+      Assert.Equal(testId, result);
+    }
 
 //DISPOSE
     public void Dispose()
