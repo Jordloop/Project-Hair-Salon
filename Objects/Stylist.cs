@@ -31,8 +31,6 @@ namespace HairSalon
         return (idEquality && nameEquality);
       }
     }
-
-
 //----GETTERS
     public string GetName()
     {
@@ -80,6 +78,35 @@ namespace HairSalon
 
         return allStylists;
     }
+//Save
+    public void Save()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("INSERT INTO stylists (name) OUTPUT INSERTED.id VALUES (@StylistName);", conn);
+
+      SqlParameter descriptionParameter = new SqlParameter();
+      descriptionParameter.ParameterName = "@StylistName";
+      descriptionParameter.Value = this.GetName();
+      cmd.Parameters.Add(descriptionParameter);
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while(rdr.Read())
+      {
+        this._id = rdr.GetInt32(0);
+      }
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+    }
+
+
 
 //DeleteAll
     public static void DeleteAll()

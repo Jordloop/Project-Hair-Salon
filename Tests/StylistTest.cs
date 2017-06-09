@@ -20,7 +20,7 @@ namespace HairSalon
     {
       Console.WriteLine("Database Empty");
       // ARRANGE/ACT
-      
+
       int result = Stylist.GetAll().Count;
 
       // ASSERT
@@ -34,7 +34,7 @@ namespace HairSalon
     public void Test_NamesAreTheSame_True()
     {
       Console.WriteLine("Names Are the Same");
-      
+
       // ARRANGE/ACT
       Stylist firstStylist = new Stylist("Jordan");
       Stylist secondStylist = new Stylist("Jordan");
@@ -43,11 +43,27 @@ namespace HairSalon
       Assert.Equal(firstStylist, secondStylist);
     }
 
+
+//SAVE TO DATABASE
+    [Fact]
+    public void Test_SavesToDatabase_True()
+    {
+      //ARRANGE
+      Stylist testStylist = new Stylist("Jordan Loop");
+      //ACT
+      testStylist.Save();
+      List<Stylist> result = Stylist.GetAll();
+      List<Stylist> testList = new List<Stylist>{testStylist};
+      //ASSERT
+      Assert.Equal(testList, result);
+    }
+
+
 //DISPOSE
     public void Dispose()
     {
       Console.WriteLine("Dispose");
-      
+
       Stylist.DeleteAll();
     }
 
