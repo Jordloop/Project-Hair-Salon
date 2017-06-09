@@ -7,13 +7,13 @@ namespace HairSalon
   public class Client
   {
     private int _id;
-    private int _clientId;
+    private int _stylistId;
     private string _name;
 
-    public Client(string Name, int ClientId, int Id = 0)
+    public Client(string Name, int StylistId, int Id = 0)
     {
       _name = Name;
-      _clientId = ClientId;
+      _stylistId = StylistId;
       _id = Id;
     }
 
@@ -29,8 +29,8 @@ namespace HairSalon
         Client newClient = (Client) otherClient;
         bool idEquality = (this.GetId() == newClient.GetId());
         bool nameEquality = (this.GetName() == newClient.GetName());
-        bool clientEquality = (this.GetClientId() == newClient.GetClientId());
-        return (idEquality && nameEquality && clientEquality);
+        bool stylistIdEquality = (this.GetStylistId() == newClient.GetStylistId());
+        return (idEquality && nameEquality && stylistIdEquality);
       }
     }
 //----GETTERS
@@ -44,9 +44,9 @@ namespace HairSalon
       return _id;
     }
 
-    public int GetClientId()
+    public int GetStylistId()
     {
-      return _clientId;
+      return _stylistId;
     }
 //----SETTERS
     public void SetName(string newName)
@@ -54,9 +54,9 @@ namespace HairSalon
       _name = newName;
     }
 
-    public void SetClientId(int newClientId)
+    public void SetStylistId(int newStylistId)
     {
-      _clientId = newClientId;
+      _stylistId = newStylistId;
     }
 //----CALSS METHODS
 //GetAll
@@ -75,8 +75,9 @@ namespace HairSalon
       {
         int clientId = rdr.GetInt32(0);
         string clientName = rdr.GetString(1);
+        int clientStylistId = rdr.GetInt32(2);
 
-        Client newClient = new Client( clientName, clientId);
+        Client newClient = new Client( clientName, clientStylistId, clientId);
         allClients.Add(newClient);
       }
 
@@ -93,6 +94,41 @@ namespace HairSalon
     }
 
 //Save
+    public void Save()
+    {
+      Console.WriteLine("Save");
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("INSERT INTO clients (name, stylist_Id) OUTPUT INSERTED.id VALUES (@ClientName, @ClientStylistId);", conn);
+
+      SqlParameter nameParameter = new SqlParameter();
+      nameParameter.ParameterName = "@ClientName";
+      nameParameter.Value = this.GetName();
+
+      SqlParameter stylistIdParameter = new SqlParameter();
+      stylistIdParameter.ParameterName = "@ClientStylistId";
+      stylistIdParameter.Value = this.GetStylistId();
+
+
+      cmd.Parameters.Add(stylistIdParameter);
+      cmd.Parameters.Add(nameParameter);
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while(rdr.Read())
+      {
+        this._id = rdr.GetInt32(0);
+      }
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+    }
 
 //Find
 

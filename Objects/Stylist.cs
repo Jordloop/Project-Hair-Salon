@@ -87,10 +87,11 @@ namespace HairSalon
 
       SqlCommand cmd = new SqlCommand("INSERT INTO stylists (name) OUTPUT INSERTED.id VALUES (@StylistName);", conn);
 
-      SqlParameter descriptionParameter = new SqlParameter();
-      descriptionParameter.ParameterName = "@StylistName";
-      descriptionParameter.Value = this.GetName();
-      cmd.Parameters.Add(descriptionParameter);
+      SqlParameter nameParameter = new SqlParameter();
+      nameParameter.ParameterName = "@StylistName";
+      nameParameter.Value = this.GetName();
+      
+      cmd.Parameters.Add(nameParameter);
       SqlDataReader rdr = cmd.ExecuteReader();
 
       while(rdr.Read())

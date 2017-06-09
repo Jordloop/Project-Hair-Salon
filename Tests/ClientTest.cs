@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 namespace HairSalon
 {
   [Collection("HairSalon")]
-  public class ClientTest
+  public class ClientTest : IDisposable
   // : IDisposable
   {
     public ClientTest()
@@ -45,18 +45,35 @@ namespace HairSalon
     [Fact]
     public void Test_SavesToDatabase_True()
     {
-      Console.WriteLine("Stylist Test: Saves To Database");
+      Console.WriteLine("Client Test: Saves To Database");
       //ARRANGE
-      Stylist testStylist = new Stylist("Jordan Loop");
+      Client testClient = new Client("Jordan Loop", 1);
       //ACT
-      testStylist.Save();
-      List<Stylist> result = Stylist.GetAll();
-      List<Stylist> testList = new List<Stylist>{testStylist};
+      testClient.Save();
+      List<Client> result = Client.GetAll();
+      List<Client> testList = new List<Client>{testClient};
       //ASSERT
       Assert.Equal(testList, result);
     }
 
 //ASSIGN ID TO OBJECT
+    [Fact]
+    public void Test_AssignsIdToObject_True()
+    {
+      Console.WriteLine("Client Test: Assign Id");
+      //Arrange
+      Client testClient = new Client("Jordan Loop", 1);
+
+      //Act
+      testClient.Save();
+      Client savedClient = Client.GetAll()[0];
+
+      int result = savedClient.GetId();
+      int testId = testClient.GetId();
+
+      //Assert
+      Assert.Equal(testId, result);
+    }
 
 //OBJECT FOUND IN DATABASE
 
