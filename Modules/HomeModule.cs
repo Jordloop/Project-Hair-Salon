@@ -13,15 +13,31 @@ namespace HairSalon
         return View["index.cshtml"];
       };
 
+      //stylist/all -> all-stylist.cshtml
       Get["/stylist/all"] = _ => {
         List<Stylist> allStylists = Stylist.GetAll();
         return View["all-stylist.cshtml", allStylists];
       };
 
+      //stylist/add -> add-stylist.cshtml
       Get["/stylist/add"] = _ => {
-
-        return View["add-stylist.cshtml", allStylists];
+        return View["add-stylist.cshtml"];
       };
+
+      Post["/stylist/add"] = _ => {
+        Stylist newStylist = new Stylist(Request.Form["stylist-name"]);
+        newStylist.Save();
+        List<Stylist> allStylists = Stylist.GetAll();
+        return View["all-stylist.cshtml", allStylists];
+      };
+      
+      //stylist/add -> all-stylist
+      Post["/stylist/deleteAll"] = _ => {
+        Stylist.DeleteAll();
+        List<Stylist> allStylists = Stylist.GetAll();
+      return View["all-stylist.cshtml", allStylists];
+      };
+
 
     }
   }

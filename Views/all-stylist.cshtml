@@ -9,9 +9,14 @@
   {
     <p>You have no Stylist. Click "Add New Stylist" button above to add a new stylist.</p>
   }
-  @foreach (var restaurant in Model)
+  @foreach (var Stylist in Model)
   {
-  <li>Stylist.GetName()</li>
+    <li>@Stylist.GetName()</li>
   }
+
+  <br>
+  <form action="stylist/deleteAll" method="post">
+    <button type="submit" class="btn btn-danger" name="stylist-delete-all">Delete All Stylists</button>
+  </form>
 
 </ul>
