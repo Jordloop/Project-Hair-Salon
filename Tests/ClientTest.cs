@@ -26,6 +26,7 @@ namespace HairSalon
       //Assert
       Assert.Equal(0, result);
     }
+
 //NAMES ARE THE SAME
     [Fact]
     public void Test_NamesAreTheSame_True()
@@ -39,7 +40,21 @@ namespace HairSalon
       // ASSERT
       Assert.Equal(firstClient, secondClient);
     }
+
 //SAVE TO DATABASE
+    [Fact]
+    public void Test_SavesToDatabase_True()
+    {
+      Console.WriteLine("Stylist Test: Saves To Database");
+      //ARRANGE
+      Stylist testStylist = new Stylist("Jordan Loop");
+      //ACT
+      testStylist.Save();
+      List<Stylist> result = Stylist.GetAll();
+      List<Stylist> testList = new List<Stylist>{testStylist};
+      //ASSERT
+      Assert.Equal(testList, result);
+    }
 
 //ASSIGN ID TO OBJECT
 
