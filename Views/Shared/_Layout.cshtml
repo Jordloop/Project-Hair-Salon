@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="/Content/CSS/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="/Content/CSS/Styles.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+    <title>Hair Choppies</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="page-header">
+        <h1><span id="heading-color1">Hair Chopies</span><br></h1>
+      </div>
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <ul class="nav nav-pills">
+              <li class="nav-item">
+                <a class="nav-link active" href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/stylist/all">View All Stylist</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/client/all">View All Clients</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/stylist/add">Add New Stylist</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/client/add">Add New Client</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div id="dynamic-content">
+        @RenderBody()
+      </div>
+    </div>
+
+    <footer class="page-footer">
+        <div>
+          <small><strong>ByJordan Loop</strong></small>
+        </div>
+    </footer>
+
+  </body>
+</html>

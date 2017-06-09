@@ -1,0 +1,58 @@
+body {
+font-family: 'Oswald', sans-serif;
+background-color: #EEAA7B;
+height: 98%;
+}
+
+html {
+  height: 98%;
+}
+
+h1 {
+  text-align: center;
+}
+
+label, p {
+  font-size: 16pt;
+}
+
+span {
+  color: #E37222;
+}
+
+.page-footer {
+  text-align: center;
+  height: 60px;
+}
+
+.container {
+  background-color: #F4F4F4;
+  height: 98%;
+}
+
+.page-header {
+  height: 10%;
+  margin-bottom: 0%;
+}
+
+#dynamic-content {
+  margin-top: 5%;
+}
+
+.navbar {
+  border: none;
+  background-color: #F4F4F4;
+  margin-left: -1%;
+}
+
+#heading-color1 {
+  color: #E37222
+}
+
+#heading-color2 {
+  color: #5bc0de
+}
+
+.dangerous {
+  color: red;
+}
