@@ -76,6 +76,20 @@ namespace HairSalon
     }
 
 //OBJECT FOUND IN DATABASE
+    [Fact]
+    public void Test_ObjectFoundInDatabase_True()
+    {
+      Console.WriteLine("Client Test: Object Found In db");
+      //Arrange
+      Client testClient = new Client("Jordan Loop", 1);
+      testClient.Save();
+
+      //Act
+      Client foundClient = Client.Find(testClient.GetId());
+
+      //Assert
+      Assert.Equal(testClient, foundClient);
+    }
 
 //DISPOSE
     public void Dispose()
