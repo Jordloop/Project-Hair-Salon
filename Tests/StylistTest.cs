@@ -109,6 +109,21 @@ namespace HairSalon
       List<Client> testClient = new List<Client>{firstClient, secondClient};
       List<Client> resultClientList = testStylist.GetClient();
     }
+
+    [Fact]
+    public void Test_UpdatesStylistInDatabase()
+    {
+      string name = "Jordan Loop";
+      Stylist testStylist = new Stylist(name);
+      testStylist.Save();
+      string newName = "Nadroj Pool";
+
+      testStylist.Update(newName);
+
+      string result = testStylist.GetName();
+
+      Assert.Equal(newName, result);
+    }
 //DISPOSE
     public void Dispose()
     {
