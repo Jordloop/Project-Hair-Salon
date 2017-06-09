@@ -75,9 +75,9 @@ namespace HairSalon
       {
         int clientId = rdr.GetInt32(0);
         string clientName = rdr.GetString(1);
-        int clientStylistId = rdr.GetInt32(2);
+        int clientClientId = rdr.GetInt32(2);
 
-        Client newClient = new Client( clientName, clientStylistId, clientId);
+        Client newClient = new Client( clientName, clientClientId, clientId);
         allClients.Add(newClient);
       }
 
@@ -100,18 +100,18 @@ namespace HairSalon
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("INSERT INTO clients (name, stylist_Id) OUTPUT INSERTED.id VALUES (@ClientName, @ClientStylistId);", conn);
+      SqlCommand cmd = new SqlCommand("INSERT INTO clients (name, stylist_Id) OUTPUT INSERTED.id VALUES (@ClientName, @ClientClientId);", conn);
 
       SqlParameter nameParameter = new SqlParameter();
       nameParameter.ParameterName = "@ClientName";
       nameParameter.Value = this.GetName();
 
-      SqlParameter stylistIdParameter = new SqlParameter();
-      stylistIdParameter.ParameterName = "@ClientStylistId";
-      stylistIdParameter.Value = this.GetStylistId();
+      SqlParameter clientIdParameter = new SqlParameter();
+      clientIdParameter.ParameterName = "@ClientClientId";
+      clientIdParameter.Value = this.GetStylistId();
 
 
-      cmd.Parameters.Add(stylistIdParameter);
+      cmd.Parameters.Add(clientIdParameter);
       cmd.Parameters.Add(nameParameter);
 
       SqlDataReader rdr = cmd.ExecuteReader();
@@ -167,6 +167,61 @@ namespace HairSalon
 
       return foundClient;
     }
+//UPDATE
+    public void Update(string newName)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("UPDATE clients SET name = @NewName OUTPUT INSERTED.name WHERE id = @ClientId;", conn);
+
+      SqlParameter newNameParameter = new SqlParameter();
+      newNameParameter.ParameterName = "@NewName";
+      newNameParameter.Value = newName;
+      cmd.Parameters.Add(newNameParameter);
+
+      SqlParameter clientIdParameter = new SqlParameter();
+      clientIdParameter.ParameterName = "@ClientId";
+      clientIdParameter.Value = this.GetId();
+      cmd.Parameters.Add(clientIdParameter);
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while(rdr.Read())
+      {
+        this._name = rdr.GetString(0);
+      }
+      if(rdr != null)
+      {
+        rdr.Close();
+      }
+      if(conn != null)
+      {
+        conn.Close();
+      }
+    }
+
+//DELETE
+    public void Delete()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("DELETE FROM clients WHERE id = @ClientId;", conn);
+
+      SqlParameter clientIdParameter = new SqlParameter();
+      clientIdParameter.ParameterName = "@ClientId";
+      clientIdParameter.Value = this.GetId();
+
+      cmd.Parameters.Add(clientIdParameter);
+      cmd.ExecuteNonQuery();
+
+      if(conn != null)
+      {
+        conn.Close();
+      }
+    }
+
 
 //DeleteAll
     public static void DeleteAll()

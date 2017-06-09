@@ -110,6 +110,7 @@ namespace HairSalon
       List<Client> resultClientList = testStylist.GetClient();
     }
 
+//UPDATE STYLIST IN DB
     [Fact]
     public void Test_UpdatesStylistInDatabase()
     {
@@ -125,7 +126,7 @@ namespace HairSalon
       Assert.Equal(newName, result);
     }
 
-
+//DELETE A STYLIST FROM DB
     [Fact]
     public void Test_DeletesStylistFromDatabase_True()
     {
