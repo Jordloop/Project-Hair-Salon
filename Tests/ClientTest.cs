@@ -27,7 +27,18 @@ namespace HairSalon
       Assert.Equal(0, result);
     }
 //NAMES ARE THE SAME
+    [Fact]
+    public void Test_NamesAreTheSame_True()
+    {
+      Console.WriteLine("Client Test: Names Are the Same");
 
+      // ARRANGE/ACT
+      Client firstClient = new Client("Jordan", 1);
+      Client secondClient = new Client("Jordan", 1);
+
+      // ASSERT
+      Assert.Equal(firstClient, secondClient);
+    }
 //SAVE TO DATABASE
 
 //ASSIGN ID TO OBJECT
@@ -39,7 +50,7 @@ namespace HairSalon
     {
       Console.WriteLine("Dispose");
 
-      Stylist.DeleteAll();
+      Client.DeleteAll();
     }
 
 
