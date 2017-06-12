@@ -38,6 +38,15 @@ namespace HairSalon
         return View["all-stylist.cshtml", allStylists];
       };
 
+      Get["/stylist/view/{id}"] = param => {
+        Dictionary<string, object> model = new Dictionary <string, object>();
+        Stylist selectedStylist = Stylist.Find(param.id);
+        List<Client> stylistClients = selectedStylist.GetClient();
+
+        model.Add("Stylist", selectedStylist);
+        model.Add("Clients", stylistClients);
+        return View["view-stylist.cshtml", model];
+      };
 
     }
   }

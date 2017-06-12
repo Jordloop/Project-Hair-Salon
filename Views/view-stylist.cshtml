@@ -1,0 +1,17 @@
+@{
+Layout = "Shared/_Layout.cshtml";
+}
+
+@if (@Model["Clients"].Count == 0)
+{
+  <p>This Stylist has no clients.</p>
+}
+else
+{
+  <ol>
+    @foreach (var client in @Model["Clients"])
+    {
+      <li>@client.GetName()</li>
+    }
+  </ol>
+}
