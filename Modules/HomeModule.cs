@@ -30,12 +30,12 @@ namespace HairSalon
         List<Stylist> allStylists = Stylist.GetAll();
         return View["all-stylist.cshtml", allStylists];
       };
-      
+
       //stylist/add -> all-stylist
-      Post["/stylist/deleteAll"] = _ => {
+      Post["/stylist/delete-all"] = _ => {
         Stylist.DeleteAll();
         List<Stylist> allStylists = Stylist.GetAll();
-      return View["all-stylist.cshtml", allStylists];
+        return View["all-stylist.cshtml", allStylists];
       };
 
 
