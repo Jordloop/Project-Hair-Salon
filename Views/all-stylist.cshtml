@@ -13,12 +13,6 @@
       <li><a href="/stylist/view/@stylist.GetId()"> @stylist.GetName()</a></li>
     }
 
-    <br>
-    <form action="/stylist/add" method="post">
-      <label for="stylist-name">Stylist Name</label>
-      <input name="stylist-name" type="text">
-      <br><br><button type="submit">Add New Stylist</button>
-    </form>
 
     <br>
     <form action="/stylist/delete-all" method="post">
@@ -28,5 +22,11 @@
   }
 else
 {
-  <p>You have no Stylist. Click "Add New Stylist" button above to add a new stylist.</p>
+  <p>You have no Stylist.</p>
 }
+<br>
+<form action="/stylist/add" method="post">
+  <label for="stylist-name">Stylist Name</label>
+  <input name="stylist-name" type="text">
+  <br><br><button type="submit">Add New Stylist</button>
+</form>
