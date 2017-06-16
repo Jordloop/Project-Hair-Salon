@@ -1,0 +1,13 @@
+@{
+Layout = "Shared/_Layout.cshtml";
+}
+<form action="/client/edit/@Model.GetId()" method="post">
+
+
+  <input type="hidden" name="_method" value="PATCH">
+  <input name="client-id" type="hidden" value="@Model.GetId()">
+
+  <label for="edit-client">Change name</label>
+  <input name="edit-client" type="text">
+  <button type="submit">Update</button>
+</form>

@@ -34,8 +34,7 @@ namespace HairSalon
       //stylist/add -> all-stylist
       Post["/stylist/delete-all"] = _ => {
         Stylist.DeleteAll();
-        List<Stylist> allStylists = Stylist.GetAll();
-        return View["all-stylist.cshtml", allStylists];
+        return View["confirmed.cshtml"];
       };
 
       Get["/stylist/view/{id}"] = param => {
@@ -48,9 +47,10 @@ namespace HairSalon
         return View["view-stylist.cshtml", model];
       };
 
-      Get["/client/all"] = _ => {
-        List<Client> allClients = Client.GetAll();
-        return View["all-client.cshtml", allClients];
+
+      Get["/client/add"] = _ => {
+        List<Stylist> allStylists = Stylist.GetAll();
+        return View["add-client.cshtml", allStylists];
       };
 
       Post["/client/add"] = _ => {
@@ -60,6 +60,22 @@ namespace HairSalon
         return View["all-client.cshtml", allClients];
       };
 
+      Delete["/client/delete/{id}"] = param => {
+        Client selectedClient = Client.Find(param.id);
+        selectedClient.Delete();
+        return View["confirmed.cshtml"];
+      };
+
+      Get["/client/edit/{id}"] = param => {
+        Client selectedClient = Client.Find(param.id);
+        return View["edit-client.cshtml", selectedClient];
+      };
+
+      Patch["client/edit/{id}"] = param => {
+        Client SelectedClient = Client.Find(param.id);
+        SelectedClient.Update(Request.Form["edit-client"]);
+        return View["confirmed.cshtml"];
+      };
     }
   }
 }

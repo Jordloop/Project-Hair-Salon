@@ -1,7 +1,7 @@
 @{
 Layout = "Shared/_Layout.cshtml";
 }
-
+<h4>@Model["Stylist"].GetName()</h4>
 @if (@Model["Clients"].Count == 0)
 {
   <p>This Stylist has no clients.</p>
@@ -12,11 +12,15 @@ else
     @foreach (var client in @Model["Clients"])
     {
       <li>@client.GetName()</li>
+        <div class="btn-group btn-group-xs" role="group">
+          <form action="/client/delete/@client.GetId()" method="post">
+            <input type="hidden" name="_method" value="DELETE">
+            <button type="submit" class="btn btn-danger">Delete</button>
+            <a href="/client/edit/@client.GetId()" class="btn btn-info">Update</a>
+
+          </form>
+        </div>
     }
   </ol>
 }
-<form action="/client/add" method="post">
-  <label for="client-name">Client Name</label>
-  <input name="client-name" type="text">
-  <br><br><button type="submit">Add New Client</button>
-</form>
+<a href="/client/add">Add a client.</a>

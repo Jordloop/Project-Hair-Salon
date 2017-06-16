@@ -239,9 +239,11 @@ namespace HairSalon
         Console.WriteLine("DeleteAll");
         SqlConnection conn = DB.Connection();
         conn.Open();
-        SqlCommand cmd = new SqlCommand("DELETE FROM stylists;", conn);
+        SqlCommand cmd1 = new SqlCommand("DELETE FROM stylists;", conn);
+        SqlCommand cmd2 = new SqlCommand("DELETE FROM clients;", conn);
 
-        cmd.ExecuteNonQuery();
+        cmd1.ExecuteNonQuery();
+        cmd2.ExecuteNonQuery();
         conn.Close();
       }
 
