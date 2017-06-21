@@ -49,7 +49,6 @@ namespace HairSalon
 //GetAll
     public static List<Stylist> GetAll()
     {
-      Console.WriteLine("GetAll");
       List<Stylist> allStylists = new List<Stylist>{};
 
       SqlConnection conn = DB.Connection();
@@ -81,7 +80,6 @@ namespace HairSalon
 //Save
     public void Save()
     {
-      Console.WriteLine("Save");
       SqlConnection conn = DB.Connection();
       conn.Open();
 
@@ -234,22 +232,16 @@ namespace HairSalon
       }
     }
 //DeleteAll
-    public static void DeleteAll()
-      {
-        Console.WriteLine("DeleteAll");
-        SqlConnection conn = DB.Connection();
-        conn.Open();
-        SqlCommand cmd1 = new SqlCommand("DELETE FROM stylists;", conn);
-        SqlCommand cmd2 = new SqlCommand("DELETE FROM clients;", conn);
+  public static void DeleteAll()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+      SqlCommand cmd1 = new SqlCommand("DELETE FROM stylists;", conn);
+      SqlCommand cmd2 = new SqlCommand("DELETE FROM clients;", conn);
 
-        cmd1.ExecuteNonQuery();
-        cmd2.ExecuteNonQuery();
-        conn.Close();
-      }
-
-
-
-
-// End -----------------------------------------------
+      cmd1.ExecuteNonQuery();
+      cmd2.ExecuteNonQuery();
+      conn.Close();
+    }
   }
 }

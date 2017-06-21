@@ -62,7 +62,6 @@ namespace HairSalon
 //GetAll
     public static List<Client> GetAll()
     {
-      Console.WriteLine("GetAll");
       List<Client> allClients = new List<Client>{};
 
       SqlConnection conn = DB.Connection();
@@ -96,7 +95,6 @@ namespace HairSalon
 //Save
     public void Save()
     {
-      Console.WriteLine("Save");
       SqlConnection conn = DB.Connection();
       conn.Open();
 
@@ -226,7 +224,6 @@ namespace HairSalon
 //DeleteAll
     public static void DeleteAll()
       {
-        Console.WriteLine("DeleteAll");
         SqlConnection conn = DB.Connection();
         conn.Open();
         SqlCommand cmd = new SqlCommand("DELETE FROM clients;", conn);

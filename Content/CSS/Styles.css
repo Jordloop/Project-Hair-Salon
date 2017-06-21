@@ -5,7 +5,7 @@ height: 98%;
 }
 
 html {
-  height: 98%;
+  height: 100%;
 }
 
 h1 {
@@ -27,7 +27,7 @@ span {
 
 .container {
   background-color: #F4F4F4;
-  height: 98%;
+  height: 100%;
 }
 
 .page-header {

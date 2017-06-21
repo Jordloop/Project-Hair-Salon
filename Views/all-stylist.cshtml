@@ -4,29 +4,38 @@
 
 <h1>All Stylist</h1><br>
 
+<form action="/stylist/add" method="post">
+<label for="stylist-name">Stylist Name</label>
+<input name="stylist-name" type="text">
+<br><br><button type="submit">Add New Stylist</button>
+</form>
+
+<br>
+<form action="/stylist/delete-all" method="post">
+<button type="submit" class="btn btn-danger">Delete All Stylists</button>
+</form>
+</ul>
+
 <ul>
   @if (Model.Count != 0)
   {
 
+  <div class="row">
     @foreach (var stylist in Model)
     {
-      <li><a href="/stylist/view/@stylist.GetId()"> @stylist.GetName()</a></li>
+        <div class="col-sm-6 col-md-4">
+          <div class="thumbnail">
+            <div class="caption">
+              <h3>@stylist.GetName()</h3>
+              <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+            </div>
+          </div>
+        </div>
     }
+    </div>
 
-
-    <br>
-    <form action="/stylist/delete-all" method="post">
-      <button type="submit" class="btn btn-danger">Delete All Stylists</button>
-    </form>
-  </ul>
-  }
-else
-{
-  <p>You have no Stylist.</p>
-}
-<br>
-<form action="/stylist/add" method="post">
-  <label for="stylist-name">Stylist Name</label>
-  <input name="stylist-name" type="text">
-  <br><br><button type="submit">Add New Stylist</button>
-</form>
+    }
+    else
+    {
+    <p>You have no Stylist.</p>
+    }
