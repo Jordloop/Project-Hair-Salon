@@ -70,7 +70,6 @@ namespace HairSalon
         Client selectedClient = Client.Find(param.id);
         return View["edit-client.cshtml", selectedClient];
       };
-
       Patch["client/edit/{id}"] = param => {
         Client SelectedClient = Client.Find(param.id);
         SelectedClient.Update(Request.Form["edit-client"]);
